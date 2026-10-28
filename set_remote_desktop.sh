@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Title : Ubuntu 22.04 Rdp 설정
 # Author : 이윤호 (yhlee@sdt.inc)
