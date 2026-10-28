@@ -59,3 +59,24 @@ sudo systemctl restart xrdp
 #dbus 실행
 echo -e "${BLUE}<< Run dbus-launch. >>${NC}"
 dbus-launch
+
+# Snap 버전 firefox 제거 및 apt 버전 firefox 브라우저 설치
+echo -e "${BLUE}<< Remove snap ver. Firefox Browser >>${NC}"
+sudo snap remove firefox
+sudo apt autoremove firefox --purge
+
+echo -e "${BLUE}<< Add Mozilla Team PPA repository >> ${NC}"
+sudo add-apt-repository ppa:mozillateam/ppa -y
+# sudo apt update
+
+# Mozilla PPA 우선순위 설정
+echo '
+Package: *
+Pin: release o=LP-PPA-mozillateam
+Pin-Priority: 900
+' | sudo tee /etc/apt/preferences.d/mozilla
+
+# apt 버전 파이어폭스 설치
+echo -e "${BLUE}<< Install Apt ver. Firefox Browser >> ${NC}"
+sudo apt update
+sudo apt install firefox -y
