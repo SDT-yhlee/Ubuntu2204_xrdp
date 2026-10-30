@@ -63,7 +63,10 @@ dbus-launch
 # Snap 버전 firefox 제거 및 apt 버전 firefox 브라우저 설치
 echo -e "${BLUE}<< Remove snap ver. Firefox Browser >>${NC}"
 sudo snap remove firefox
-sudo apt autoremove firefox --purge
+sudo apt autoremove firefox --purge -y
+
+# ipv6 네트워크 우선순위 낮추기
+sudo sed -i 's/^#\s*precedence ::ffff:0:0\/96\s*100/precedence ::ffff:0:0\/96  100/' /etc/gai.conf
 
 echo -e "${BLUE}<< Add Mozilla Team PPA repository >> ${NC}"
 sudo add-apt-repository ppa:mozillateam/ppa -y
